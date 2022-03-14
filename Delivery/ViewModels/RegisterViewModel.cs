@@ -20,6 +20,7 @@ namespace Delivery.ViewModels
         [Display(Name ="Телефон")]
         public string PhoneNumber { get; set; }
         [Required]
+        [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "Ваша компания")]
         public string Password { get; set; }

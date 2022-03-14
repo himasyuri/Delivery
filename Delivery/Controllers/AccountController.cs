@@ -21,7 +21,7 @@ namespace Delivery.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
