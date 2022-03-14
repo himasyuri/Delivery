@@ -10,6 +10,7 @@ namespace Delivery.Models
     public class ApplicationContext : DbContext
     {
         public IdentityDbContext<User> Users { get; set; }
+        public DbSet<Application> Applications { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
