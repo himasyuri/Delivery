@@ -1,0 +1,54 @@
+﻿@model Delivery.ViewModels.RegisterViewModel;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Регистрация нового пользователя</title>
+</head>
+<body>
+    <form id="register" method="post" asp-controller="Account" asp-action="Register">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email"></label><br />
+            <input id="email" name="email" type="text" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <label asp-for="FirstName"></label><br />
+            <input id="firstname" name="firstname" type="text" asp-for="FirstName" />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div>
+            <label asp-for="LastName"></label><br />
+            <input id="lastname" name="lastname" type="text" asp-for="LastName" />
+            <span asp-validation-for="LastName"></span>
+        </div>
+        <div>
+            <label asp-for="Company"></label><br />
+            <input id="company" name="company" type="text" asp-for="Company" />
+            <span asp-validation-for="Company"></span>
+        </div>
+        <div>
+            <label asp-for="PhoneNumber"></label><br />
+            <input id="phonenumber" name="phonenumber" type="text" asp-for="PhoneNumber" />
+            <span asp-validation-for="PhoneNumber"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label><br />
+            <input id="password" type="password" name="password" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div>
+            <label asp-for="PasswordConfirm"></label><br />
+            <input id="passwordConfirm" type="password" name="passwordConfirm" asp-for="PasswordConfirm" />
+            <span asp-validation-for="PasswordConfirm"></span>
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </form>
+</body>
+</html>
