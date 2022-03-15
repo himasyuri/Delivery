@@ -22,7 +22,7 @@ namespace Delivery.ViewModels
         [Required]
         [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
         [DataType(DataType.Password)]
-        [Display(Name = "Ваша компания")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
         [Required]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
