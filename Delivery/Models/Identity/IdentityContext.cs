@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Delivery.Models
+namespace Delivery.Models.Identity
 {
-    public class ApplicationContext : DbContext
+    public class IdentityContext : IdentityDbContext<User>
     {
-        public DbSet<Application> Applications { get; set; }
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
             Database.EnsureCreated();
