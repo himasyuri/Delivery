@@ -15,5 +15,12 @@ namespace Delivery.Models
         {
             Database.EnsureCreated();
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                 .Entity<Application>()
+                 .Property(e => e.Id)
+                 .ValueGeneratedOnAdd();
+        }
     }
 }
