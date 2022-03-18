@@ -1,0 +1,26 @@
+﻿@model Delivery.ViewModels.ApplicationViewModel
+@{
+    ViewBag.Title = "Создание заявки";
+}
+<form asp-action="Create" asp-controller="Application">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Text" class="control-label">Текст</label>
+        <input type="text" asp-for="Text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfCars" class="control-label">Количество требуемых машин</label>
+        <input type="text" asp-for="NumberOfCars" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StartedWay" class="control-label">Откуда</label>
+        <input type="text" asp-for="StartedWay" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndedWay" class="control-label">Куда</label>
+        <input type="text" asp-for="EndedWay" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-outline-secondary" />
+    </div>
+</form>
