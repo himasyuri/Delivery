@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Delivery.ViewModels;
-using Microsoft.AspNetCore.Authorization;
-using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Delivery.Controllers
 {
@@ -50,7 +49,7 @@ namespace Delivery.Controllers
         }
 
         //[Authorize(Roles = "admin")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Approve(string id)
         {
             if (ModelState.IsValid)
@@ -67,7 +66,7 @@ namespace Delivery.Controllers
         }
 
         //[Authorize(Roles = "admin")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Regect(string id)
         {
             if (ModelState.IsValid)
@@ -100,17 +99,20 @@ namespace Delivery.Controllers
         [HttpGet]
         public async Task<IActionResult> Seemore(string id)
         {
-            Application application = await db.Applications.FindAsync(id);
-            if (application != null)
+            if (id != null)
             {
-                return View("ApplicationInfo");
+                Application application = await db.Applications.FirstOrDefaultAsync(p => p.Id == id);
+                if (application != null)
+                {
+                    return View(application);
+                }
             }
-            return View();
+            return NotFound();
         }
         [HttpGet]
-        public IActionResult ApplicationList()
+        public async Task<IActionResult> ApplicationList()
         {
-            return View("ApplicationList");
+            return View(await db.Applications.ToListAsync());
         }
     }
 }

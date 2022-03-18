@@ -1,0 +1,24 @@
+﻿@model Delivery.Models.Application
+@{
+    ViewBag.Title = "Подробности о заявке";
+}
+<h2>Заявка @Model.Id</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Информация</dt>
+        <dd>@Model.Text</dd>
+
+        <dt>Количество машин</dt>
+        <dd>@Model.NumberOfCars</dd>
+        <dt>Откуда</dt>
+        <dd>@Model.StartedWay</dd>
+        <dt>Куда</dt>
+        <dd>@Model.EndedWay</dd>
+    </dl>
+</div>
+<a class="btn btn-sm btn-primary" asp-action="Approve" asp-route-id="@Model.Id">Одобрить</a>
+<a class="btn btn-sm btn-primary" asp-action="Regect" asp-route-id="@Model.Id">Отклонить</a>
+<button type="submit" class="btn btn-sm btn-danger">
+    Удалить
+</button>
+
