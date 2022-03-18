@@ -48,6 +48,12 @@ namespace Delivery.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
+        {
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
