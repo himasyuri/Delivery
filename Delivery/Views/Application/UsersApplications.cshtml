@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Delivery.Models.Application>
+@{
+    ViewBag.Title = "Список заявок";
+}
+
+
+<table class="table">
+    <tr><th>Текст</th><th>Статус</th><th></th></tr>
+    @foreach (var application in Model)
+    {
+        <tr>
+            <td>@application.Text</td>
+            <td>@application.IsApproved</td>
+            <td>
+                @if (application.IsApproved == false & application.IsReeded == true)
+                {
+                    <form asp-action="Delete" asp-route-id="@application.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="" asp-route-id="@application.Id">Посмотреть отзыв</a>
+                        <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                        </button>
+                    </form>
+                }
+                @if (application.IsApproved == true & application.IsReeded == true)
+                {
+                    <form asp-action="Delete" asp-route-id="@application.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="Pay" asp-route-id="@application.Id">Оплатить</a>
+                        <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                        </button>
+                    </form>
+                }
+            </td>
+        </tr>
+    }
+</table>

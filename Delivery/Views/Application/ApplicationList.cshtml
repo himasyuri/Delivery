@@ -12,8 +12,8 @@
             <td>@application.NumberOfCars</td>
             <td>@application.IsApproved</td>
             <td>
-                @if (application.IsApproved == false)
-                {
+                @if (application.IsApproved == false & application.IsReeded == false)
+                 {
                     <form asp-action="Delete" asp-route-id="@application.Id" method="post">
                         <a class="btn btn-sm btn-primary" asp-action="Approve" asp-route-id="@application.Id">Одобрить</a>
                         <a class="btn btn-sm btn-primary" asp-action="Regect" asp-route-id="@application.Id">Отклонить</a>
@@ -22,16 +22,26 @@
                             Удалить
                         </button>
                     </form>
-                }
-                else
-                {
-            <form asp-action="Delete" asp-route-id="@application.Id" method="post">
-                <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
-                <button type="submit" class="btn btn-sm btn-danger">
-                    Удалить
-                </button>
-            </form>
-                }         
+                 }
+                @if (application.IsApproved == true & application.IsReeded == true)
+                 {
+                    <form asp-action="Delete" asp-route-id="@application.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                        </button>
+                    </form>
+                 }
+                @if (application.IsApproved == false & application.IsReeded == true)
+                 {
+                    <form asp-action="Delete" asp-route-id="@application.Id" method="post">
+                        <a class="btn btn-sm btn-primary" asp-action="AddCom" >Добавить комментарий</a>
+                        <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Удалить
+                        </button>
+                    </form>
+                 }
 </td>
         </tr>
     }
