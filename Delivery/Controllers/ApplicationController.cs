@@ -86,9 +86,12 @@ namespace Delivery.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
+            User user = await _userManager.GetUserAsync(HttpContext.User);
             Application application = await db.Applications.FindAsync(id);
-            if (application != null)
+            if (application != null & user != null)
             {
+                Comment comment = await db.Comments.FirstOrDefaultAsync(p => p.ApplicationId == application.Id);
+                db.Comments.Remove(comment);
                 db.Applications.Remove(application);
                 await db.SaveChangesAsync();
                 return RedirectToAction("ApplicationList", "Application");
