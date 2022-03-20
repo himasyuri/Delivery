@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Delivery.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Delivery.Controllers
 {
@@ -19,10 +20,7 @@ namespace Delivery.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         [HttpPost]
         public async Task<IActionResult> Create(ApplicationViewModel model)
@@ -32,7 +30,7 @@ namespace Delivery.Controllers
                 User user = await _userManager.GetUserAsync(HttpContext.User);
                 if (user != null)
                 {
-                    Application application = new Application { Text = model.Text, StartedWay = model.StartedWay, EndedWay = model.EndedWay, NumberOfCars = model.NumberOfCars };
+                    Application application = new Application { Text = model.Text, StartedWay = model.StartedWay, EndedWay = model.EndedWay, NumberOfCars = model.NumberOfCars, UserId = user.Id };
                     if (application.StartedWay != null & application.EndedWay != null & application.NumberOfCars != 0)
                     {
                         await db.Applications.AddAsync(application);
@@ -48,7 +46,9 @@ namespace Delivery.Controllers
             return View(model);
         }
 
-        //[Authorize(Roles = "admin")]
+        [HttpGet]
+        public async Task<IActionResult> ApplicationList() => View(await db.Applications.ToListAsync());
+
         [HttpGet]
         public async Task<IActionResult> Approve(string id)
         {
@@ -57,6 +57,7 @@ namespace Delivery.Controllers
                 Application application = await db.Applications.FindAsync(id);
                 if (application != null)
                 {
+                    application.IsReeded = true;
                     application.IsApproved = true;
                     await db.SaveChangesAsync();
                     return RedirectToAction("ApplicationList", "Application");
@@ -65,7 +66,6 @@ namespace Delivery.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "admin")]
         [HttpGet]
         public async Task<IActionResult> Regect(string id)
         {
@@ -74,6 +74,7 @@ namespace Delivery.Controllers
                 Application application = await db.Applications.FindAsync(id);
                 if (application != null)
                 {
+                    application.IsReeded = true;
                     application.IsApproved = false;
                     await db.SaveChangesAsync();
                     return RedirectToAction("ApplicationList", "Application");
@@ -109,10 +110,20 @@ namespace Delivery.Controllers
             }
             return NotFound();
         }
+        
         [HttpGet]
-        public async Task<IActionResult> ApplicationList()
+        public async Task<IActionResult> UsersApplications()
         {
-            return View(await db.Applications.ToListAsync());
+            User user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user != null)
+            {
+                return View(await db.Applications.Where(p => p.UserId == user.Id)
+                                                  .ToListAsync());
+            }
+            return NotFound();
         }
+
+        [HttpGet]
+        public IActionResult Pay() =>  View("Pay");
     }
 }

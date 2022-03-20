@@ -1,0 +1,15 @@
+﻿@model Delivery.ViewModels.CommentViewModel
+@{
+    ViewBag.Title = "Создание заявки";
+}
+
+<form method="post" asp-action="AddComment" asp-controller="Comments">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Текст</label>
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-outline-secondary" />
+    </div>
+</form>

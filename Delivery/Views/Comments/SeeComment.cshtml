@@ -1,0 +1,11 @@
+﻿@model Delivery.Models.Comment
+@{
+    ViewBag.Title = "Комментарий к заявке";
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>Информация</dt>
+        <dd>@Model.Description</dd>
+    </dl>
+</div>
+<a class="btn btn-sm btn-primary" asp-area="" asp-controller="Application" asp-action="UsersApplications">Вернуться к моим заявкам</a>

@@ -393,4 +393,13 @@ D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Delivery.dll
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\ref\Delivery.dll
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Delivery.pdb
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Delivery.genruntimeconfig.cache
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\Create.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\Index.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\Seemore.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\UsersApplications.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\Pay.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\ApplicationList.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Comments\AddComment.cshtml.g.cs
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Comments\SeeComment.cshtml.g.cs

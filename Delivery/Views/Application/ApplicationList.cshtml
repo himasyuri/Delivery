@@ -5,7 +5,7 @@
 
 
 <table class="table">
-    <tr><th>Количество машин</th><th>Статус</th><th></th></tr>
+    <tr><th>Количество машин</th><th>Статус</th></tr>
     @foreach (var application in Model)
     {
         <tr>
@@ -13,7 +13,7 @@
             <td>@application.IsApproved</td>
             <td>
                 @if (application.IsApproved == false & application.IsReeded == false)
-                 {
+                {
                     <form asp-action="Delete" asp-route-id="@application.Id" method="post">
                         <a class="btn btn-sm btn-primary" asp-action="Approve" asp-route-id="@application.Id">Одобрить</a>
                         <a class="btn btn-sm btn-primary" asp-action="Regect" asp-route-id="@application.Id">Отклонить</a>
@@ -22,27 +22,27 @@
                             Удалить
                         </button>
                     </form>
-                 }
+                }
                 @if (application.IsApproved == true & application.IsReeded == true)
-                 {
+                {
                     <form asp-action="Delete" asp-route-id="@application.Id" method="post">
                         <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
                         <button type="submit" class="btn btn-sm btn-danger">
                             Удалить
                         </button>
                     </form>
-                 }
+                }
                 @if (application.IsApproved == false & application.IsReeded == true)
-                 {
+                {
                     <form asp-action="Delete" asp-route-id="@application.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="AddCom" >Добавить комментарий</a>
+                        <a class="btn btn-sm btn-primary" asp-controller="Comments" asp-action="AddComment" asp-route-id="@application.Id">Добавить комментарий</a>
                         <a class="btn btn-sm btn-primary" asp-action="Seemore" asp-route-id="@application.Id">Подробнее</a>
                         <button type="submit" class="btn btn-sm btn-danger">
                             Удалить
                         </button>
                     </form>
-                 }
-</td>
+                }
+            </td>
         </tr>
     }
 </table>
