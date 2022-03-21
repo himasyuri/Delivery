@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Delivery
 {
@@ -27,11 +28,10 @@ namespace Delivery
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityContext>();
             services.Configure<IdentityOptions>(opts => {
-                opts.User.RequireUniqueEmail = true;
-                opts.Password.RequireNonAlphanumeric = false;
-                opts.Password.RequiredLength = 5;
+                opts.User.RequireUniqueEmail = Convert.ToBoolean(Configuration.GetSection("UserSettings:RequireUniqueEmail").Value);
+                opts.Password.RequireNonAlphanumeric = Convert.ToBoolean(Configuration.GetSection("PasswordSettings:RequireNonAlphanumeric").Value);
+                opts.Password.RequiredLength = Convert.ToInt32(Configuration.GetSection("PasswordSettings:RequiredLength").Value);
             });
-
             services.AddControllersWithViews();
         }
 

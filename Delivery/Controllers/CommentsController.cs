@@ -9,8 +9,8 @@ namespace Delivery.Controllers
 {
     public class CommentsController : Controller
     {
-        readonly UserManager<User> _userManager;
-        readonly ApplicationContext db;
+        private readonly UserManager<User> _userManager;
+        private readonly ApplicationContext db;
 
         public CommentsController(UserManager<User> userManager, ApplicationContext context)
         {
@@ -19,7 +19,10 @@ namespace Delivery.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddComment() => View("AddComment");
+        public IActionResult AddComment()
+        {
+            return View("AddComment");
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddComment(CommentViewModel model, string id)

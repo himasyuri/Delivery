@@ -10,8 +10,8 @@ namespace Delivery.Controllers
 {
     public class ApplicationController : Controller
     {
-        readonly UserManager<User> _userManager;
-        readonly ApplicationContext db;
+        private readonly UserManager<User> _userManager;
+        private readonly ApplicationContext db;
 
         public ApplicationController(UserManager<User> userManager, ApplicationContext context)
         {
@@ -30,7 +30,14 @@ namespace Delivery.Controllers
                 User user = await _userManager.GetUserAsync(HttpContext.User);
                 if (user != null)
                 {
-                    Application application = new Application { Text = model.Text, StartedWay = model.StartedWay, EndedWay = model.EndedWay, NumberOfCars = model.NumberOfCars, UserId = user.Id };
+                    Application application = new Application 
+                    { 
+                        Text = model.Text, 
+                        StartedWay = model.StartedWay, 
+                        EndedWay = model.EndedWay, 
+                        NumberOfCars = model.NumberOfCars, 
+                        UserId = user.Id 
+                    };
                     if (application.StartedWay != null & application.EndedWay != null & application.NumberOfCars != 0)
                     {
                         await db.Applications.AddAsync(application);
@@ -47,7 +54,10 @@ namespace Delivery.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ApplicationList() => View(await db.Applications.ToListAsync());
+        public async Task<IActionResult> ApplicationList()
+        {
+            return View(await db.Applications.ToListAsync());
+        }
 
         [HttpGet]
         public async Task<IActionResult> Approve(string id)
@@ -105,13 +115,15 @@ namespace Delivery.Controllers
         {
             if (id != null)
             {
-                Application application = await db.Applications.FirstOrDefaultAsync(p => p.Id == id);
-                if (application != null)
-                {
-                    return View(application);
-                }
+                return NotFound();
             }
-            return NotFound();
+
+            Application application = await db.Applications.FirstOrDefaultAsync(p => p.Id == id);
+            if (application != null)
+            {
+                return View(application);
+            }
+            return View();
         }
         
         [HttpGet]

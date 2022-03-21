@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Delivery.Models;
-using Delivery.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Delivery.Controllers
 {
     public class RolesController : Controller
     {
-        RoleManager<IdentityRole> _roleManager;
-        readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<User> _userManager;
 
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
@@ -53,7 +50,10 @@ namespace Delivery.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult UserList() => View(_userManager.Users.ToList());
+        public IActionResult UserList()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
@@ -61,7 +61,6 @@ namespace Delivery.Controllers
             User user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                // получем список ролей пользователя
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
                 var addedRoles = roles.Except(userRoles);

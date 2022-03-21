@@ -403,3 +403,7 @@ D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\Pay.cshtm
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Application\ApplicationList.cshtml.g.cs
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Comments\AddComment.cshtml.g.cs
 D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Razor\Views\Comments\SeeComment.cshtml.g.cs
+D:\Projects\Delivery\Delivery\bin\Debug\net5.0\ru\Delivery.resources.dll
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Delivery.Resources.Controllers.AccountController.ru.resources
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\Delivery.csproj.GenerateResource.cache
+D:\Projects\Delivery\Delivery\obj\Debug\net5.0\ru\Delivery.resources.dll

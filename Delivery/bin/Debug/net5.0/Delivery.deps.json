@@ -321,6 +321,11 @@
         "runtime": {
           "Delivery.dll": {}
         },
+        "resources": {
+          "ru/Delivery.resources.dll": {
+            "locale": "ru"
+          }
+        },
         "compile": {
           "Delivery.dll": {}
         }

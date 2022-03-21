@@ -16,6 +16,7 @@ namespace Delivery.Models
         {
             Database.EnsureCreated();
         }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder

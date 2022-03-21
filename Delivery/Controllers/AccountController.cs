@@ -11,8 +11,8 @@ namespace Delivery.Controllers
 {
     public class AccountController : Controller
     {
-        readonly UserManager<User> _userManager;
-        readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -25,12 +25,21 @@ namespace Delivery.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, Company = model.Company, PhoneNumber = model.PhoneNumber };
+                User user = new User 
+                {
+                    Email = model.Email, 
+                    UserName = model.Email, 
+                    FirstName = model.FirstName, 
+                    LastName = model.LastName, 
+                    Company = model.Company, 
+                    PhoneNumber = model.PhoneNumber
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
